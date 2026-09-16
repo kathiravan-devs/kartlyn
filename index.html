@@ -35,10 +35,10 @@
     </div>
 
     <div class="kartlyn-header-middle-section">
-      <input class="search-bar" id="searchInput" type="text" placeholder="Search KartLyn">
+      <input class="search-bar" id="searchInput" type="search" placeholder="Search KartLyn" aria-label="Search products" autocomplete="off">
 
-      <button class="search-button" id="searchButton">
-        <img class="search-icon" src="images/icons/search-icon.png">
+      <button class="search-button" id="searchButton" type="button" aria-label="Search products">
+        <img class="search-icon" src="images/icons/search-icon.png" alt="">
       </button>
     </div>
 
@@ -66,6 +66,7 @@
   </div>
 
   <div class="main">
+    <p class="search-results-status js-search-results-status" aria-live="polite"></p>
     <div class="products-grid js-products-grid" id="searchedProduct">
 
       <div class="product-container">
