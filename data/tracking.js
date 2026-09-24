@@ -63,7 +63,7 @@ loadProducts(
                 </div>
 
                 <div class="product-info">
-                Quantity: ${trackingOrderQuantity}
+                Quantity: ${trackingOrder.products[0].quantity}
                 </div>
 
                 <img class="product-image" src="${trackingProduct.image}">
