@@ -140,7 +140,7 @@ class StockUnavailable extends Product {
 export let products = [];
 
 export function loadProductsFetch() {
-  const promise = fetch("https://kathir-bca.github.io/products/products.json")
+  const promise = fetch("https://kathiravan-devs.github.io/api/products.json")
     .then((response) => {
       return response.json();
     })
@@ -201,7 +201,7 @@ export function loadProducts(callback) {
     callback();
   });
 
-  xhr.open("GET", "https://kathir-bca.github.io/products/products.json");
+  xhr.open("GET", "https://kathiravan-devs.github.io/api/products.json");
   xhr.send();
 }
 

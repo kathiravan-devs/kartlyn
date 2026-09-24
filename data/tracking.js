@@ -12,31 +12,20 @@ loadProducts(
         const trackingProductId = url.searchParams.get('productId');
         const trackingProduct = getProducts(trackingProductId);
 
-        let trackingOrder;
-        let arrivingDate;
-        getOrder()
-        function getOrder() {
-            orders.forEach((order) => {
-                if (order.id === trackingOrderId) {
-                    trackingOrder = order;
-                    trackingOrder.products.forEach((product) => {
-                        if (trackingProductId === product.productId) {
-                            arrivingDate = dayjs(product.estimatedDeliveryTime).format('dddd, MMMM D');
-                        }
-                    })
-                }
-            })
-        }
+        const trackingOrder = orders.find(order => order.id === trackingOrderId);
+        const trackingItem = trackingOrder.products.find(p => p.productId === trackingProductId);
+
+        const arrivingDate = dayjs(trackingItem.estimatedDeliveryTime).format('dddd, MMMM D');
 
         const orderStart = dayjs(trackingOrder.orderTime).valueOf();
-        const deliveryEnd = dayjs(arrivingDate).valueOf();
+        const deliveryEnd = dayjs(trackingItem.estimatedDeliveryTime).valueOf();
         const now = dayjs().valueOf();
-        const totalDuration = deliveryEnd;
+
+        const totalDuration = deliveryEnd - orderStart;
         const elapsed = now - orderStart;
 
         let progressPercent = (elapsed / totalDuration) * 100;
         progressPercent = Math.min(Math.max(progressPercent, 0), 100);
-
 
 
         let currentStatus;
@@ -101,11 +90,9 @@ loadProducts(
         // animate the fill after render
 
         requestAnimationFrame(() => {
-            document.querySelector('.progress-bar').style.width = `${progressPercent > 2 ? progressPercent : 2}%`;
-            console.log(progressPercent
-                
-            );
             
+            document.querySelector('.progress-bar').style.width = `${progressPercent > 2 ? progressPercent : 2}%`;
+
         });
     })
 

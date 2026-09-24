@@ -1,11 +1,10 @@
 import { cart, totalCartQuantityUpdate } from "../../data/cart.js";
-import { products, getProducts } from '../../data/products.js';
+import { getProducts } from '../../data/products.js';
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from '../utils/money.js';
 import { addOrder } from "../../data/orders.js";
 import { renderOrders } from "../../data/orders.js";
 import { renderOrderSummary } from "./orderSummary.js";
-
 
 
 export function renderPaymentSummary() {
@@ -89,11 +88,11 @@ export function renderPaymentSummary() {
 
                 const order = await response.json();
                 addOrder(order);
-                renderOrders()
+                renderOrders();
+                localStorage.removeItem('cart')
                 window.location.href = "orders.html";
-
             } catch (error) {
-                alert('Unexpected Error, Please Try Again.')
+                alert('Unexpected Error, Please Try Again.' + error)
             }
 
         });
