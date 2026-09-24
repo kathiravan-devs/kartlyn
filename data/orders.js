@@ -1,4 +1,4 @@
-import { totalCartQuantityUpdate } from "./cart.js";
+import { addToCart, totalCartQuantityUpdate } from "./cart.js";
 import { getProducts, loadProducts } from "./products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from "../scripts/utils/money.js";
@@ -14,14 +14,19 @@ function saveToStorage() {
     localStorage.setItem('orders', JSON.stringify(orders));
 }
 
+function showCartQuantity() {
+    const quantityEl = document.querySelector('.cart-quantity');
+    if (quantityEl) {
+        quantityEl.innerHTML = totalCartQuantityUpdate();
+    }
+
+}
+
 export function renderOrders() {
 
     loadProducts(() => {
 
-        const quantityEl = document.querySelector('.cart-quantity');
-        if (quantityEl) {
-            quantityEl.innerHTML = totalCartQuantityUpdate();
-        }
+        showCartQuantity();
 
         const container = document.querySelector('.js-order-container');
 
@@ -72,13 +77,21 @@ export function renderOrders() {
                             Quantity: ${orderProduct.quantity}
                         </div>
 
-                        <button class="buy-again-button button-primary">
+                        <button class="buy-again-button js-buy-again-button button-primary"
+                            data-product-id=${matchingProduct.id}>
                             <img
                                 class="buy-again-icon"
                                 src="images/icons/buy-again.png"
                             >
                             <span class="buy-again-message">
                                 Buy it again
+                            </span>
+                            <img
+                                class="buyed-icon"
+                                src="images/icons/buyed-check-icon.png"
+                            >
+                            <span class="buyed-message">
+                                Added
                             </span>
                         </button>
 
@@ -148,14 +161,35 @@ export function renderOrders() {
 
                 </div>
             `;
+
         });
 
         // Render ALL orders only once
         container.innerHTML = ordersHTML;
+        document.querySelectorAll('.js-buy-again-button')
+            .forEach((button) => {
+                button.addEventListener('click', () => {
 
+                    const productId = button.dataset.productId;
+                    const quantity = 1;
+
+                    addToCart(productId, quantity);
+
+                    button.classList.add('buyed-button');
+                    setTimeout(() => {
+                        button.classList.remove('buyed-button');
+                    }, 2182);
+
+                    showCartQuantity();
+                });
+            });
         // Save the complete orders array
         saveToStorage();
+
     });
+
+
 }
 
 renderOrders();
+

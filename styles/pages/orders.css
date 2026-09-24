@@ -18,9 +18,11 @@
   font-size: 26px;
   margin-bottom: 25px;
 }
-.order-container{
+
+.order-container {
   margin-bottom: 40px;
 }
+
 .orders-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -149,6 +151,24 @@
 }
 
 .buy-again-icon {
+  width: 25px;
+  margin-right: 15px;
+}
+
+.buyed-button .buy-again-icon,
+.buyed-button .buy-again-message {
+  display: none;
+}
+
+.buyed-icon,
+.buyed-message {
+  display: none;
+}
+.buyed-button .buyed-icon,
+.buyed-button .buyed-message {
+  display: block;
+}
+.buyed-icon {
   width: 25px;
   margin-right: 15px;
 }
