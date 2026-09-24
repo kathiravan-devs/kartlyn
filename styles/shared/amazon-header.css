@@ -17,14 +17,14 @@
 }
 
 .kartlyn-header-left-section {
-  width: 250px;
+  width: 180px;
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .kartlyn-header-left-section {
     width: unset;
   }
-}
+} */
 
 .menu-dropdown {
   display: none;
@@ -56,9 +56,25 @@
   display: none;
 }
 
+@media (max-width: 756px) {
+  .kartlyn-header-left-section {
+    width: 150px;
+  }
+
+  .kartlyn-logo {
+    width: calc(200px - 45%);
+    box-sizing: border-box;
+  }
+
+}
+
 @media (max-width: 575px) {
   .kartlyn-logo {
     display: none;
+  }
+
+  .kartlyn-header-left-section {
+    width: unset;
   }
 
   .kartlyn-mobile-logo {
