@@ -15,6 +15,8 @@
        repeat(...) is a special property that works with
        display: grid; */
   grid-template-columns: repeat(8, 1fr);
+  gap: 5px;
+  margin: 70px 5px 5px 5px;
 }
 
 .search-results-status {
@@ -88,11 +90,18 @@
   padding-left: 25px;
   padding-right: 25px;
 
-  border-right: 1px solid rgb(231, 231, 231);
-  border-bottom: 1px solid rgb(231, 231, 231);
-
+  border: 2px solid rgb(231, 231, 231);
+  border-radius: 6px;
+  
   display: flex;
   flex-direction: column;
+
+  transition: 0.25s ease;
+}
+
+.product-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .product-image-container {
@@ -146,29 +155,35 @@
 .product-spacer {
   flex: 1;
 }
-.product-other-info{
+
+.product-other-info {
   display: flex;
   gap: 20px;
   align-items: center;
   margin-bottom: 8px;
 }
-.product-other-info .size-fashion{
+
+.product-other-info .size-fashion {
   font-size: 12px;
   border: none;
 }
 
-.product-other-info a, .product-other-info  p{
+.product-other-info a,
+.product-other-info p {
   font-size: 14px;
   font-weight: 500;
 }
-.product-other-info h1{
+
+.product-other-info h1 {
   font-size: 14px;
   font-weight: 400;
   color: red;
 }
-.product-other-info img{
+
+.product-other-info img {
   width: 34px;
 }
+
 .added-to-cart {
   color: rgb(6, 125, 98);
   font-size: 16px;
@@ -177,9 +192,11 @@
   margin-bottom: 8px;
   opacity: 0;
 }
-.js-show-added .js-added-to-cart{
+
+.js-show-added .js-added-to-cart {
   opacity: 1;
 }
+
 .added-to-cart img {
   height: 20px;
   margin-right: 5px;
