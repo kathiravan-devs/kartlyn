@@ -159,8 +159,7 @@ export function renderOrderSummary() {
                 let newQuantity = Number(quantityInput.value);
 
                 const quantityLabel = container.querySelector('.quantity-label');
-                let oldQuantity = Number(quantityLabel.textContent);
-                let updatedQuantity = oldQuantity + newQuantity;
+                let updatedQuantity = newQuantity;
 
                 if (((updatedQuantity) > 25) || ((updatedQuantity) < 0)) {
                     alert('Cart has limit, 25 per product');
