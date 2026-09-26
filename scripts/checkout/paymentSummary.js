@@ -87,6 +87,24 @@ export function renderPaymentSummary() {
                 });
 
                 const order = await response.json();
+
+                // Keep the exact price calculated on the Checkout page.
+                // The order page should display this saved checkout snapshot
+                // instead of relying on a separate price calculation.
+                order.priceSnapshot = {
+                    itemsCents: productPriceCents,
+                    shippingCents: shippingPriceCents,
+                    subtotalCents: totalBeforeTaxCents,
+                    taxCents: taxCents,
+                    totalCents: totalCents,
+                    currency: 'USD',
+                    taxRate: 0.10
+                };
+
+                // Keep the existing order field for compatibility with
+                // existing orders.html/order history data.
+                order.totalCostCents = totalCents;
+
                 addOrder(order);
                 renderOrders();
                 localStorage.removeItem('cart')
