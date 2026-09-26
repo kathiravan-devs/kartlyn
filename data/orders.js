@@ -1,4 +1,4 @@
-import { addToCart, totalCartQuantityUpdate } from "./cart.js";
+import { addToCart, totalCartQuantityUpdate, saveToStorage as saveCartToStorage } from "./cart.js";
 import { getProducts, loadProducts } from "./products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from "../scripts/utils/money.js";
@@ -183,6 +183,7 @@ export function renderOrders() {
                         button.classList.remove('buyed-button');
                     }, 2182);
 
+                    saveToStorage();
                     showCartQuantity();
                 });
             });
