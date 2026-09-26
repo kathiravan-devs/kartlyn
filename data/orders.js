@@ -1,4 +1,4 @@
-import { addToCart, totalCartQuantityUpdate, saveToStorage as saveCartToStorage } from "./cart.js";
+import { addToCart, totalCartQuantityUpdate } from "./cart.js";
 import { getProducts, loadProducts } from "./products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from "../scripts/utils/money.js";
@@ -15,11 +15,15 @@ function saveToStorage() {
 }
 
 function showCartQuantity() {
-    const quantityEl = document.querySelector('.cart-quantity');
-    if (quantityEl) {
-        quantityEl.innerHTML = totalCartQuantityUpdate();
-    }
+    const totalQuantity = totalCartQuantityUpdate();
 
+    const quantityElements = document.querySelectorAll(
+        '.cart-quantity, .js-cart-quantity, .js-cart-quantity-mobile'
+    );
+
+    quantityElements.forEach((element) => {
+        element.textContent = totalQuantity;
+    });
 }
 
 export function renderOrders() {
@@ -183,7 +187,9 @@ export function renderOrders() {
                         button.classList.remove('buyed-button');
                     }, 2182);
 
-                    saveCartToStorage();
+                    // addToCart() already saves the updated cart to localStorage.
+                    // Refresh the header immediately so the new quantity is visible
+                    // without requiring a page reload.
                     showCartQuantity();
                 });
             });
