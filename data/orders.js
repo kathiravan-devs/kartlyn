@@ -183,7 +183,7 @@ export function renderOrders() {
                         button.classList.remove('buyed-button');
                     }, 2182);
 
-                    saveToStorage();
+                    saveCartToStorage();
                     showCartQuantity();
                 });
             });
