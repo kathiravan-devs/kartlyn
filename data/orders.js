@@ -135,7 +135,10 @@ export function renderOrders() {
                                 </div>
 
                                 <div>
-                                    ${formatCurrency(\n                                        order.priceSnapshot?.totalCents ??\n                                        order.totalCostCents\n                                    )}
+                                    ${formatCurrency(
+                                        order.priceSnapshot?.totalCents ??
+                                        order.totalCostCents
+                                    )}
                                 </div>
                             </div>
 
