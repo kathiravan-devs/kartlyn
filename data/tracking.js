@@ -88,12 +88,10 @@ loadProducts(
         container.innerHTML = trackingHTML;
 
         // animate the fill after render
-
-        requestAnimationFrame(() => {
-            
-            document.querySelector('.progress-bar').style.width = `${progressPercent > 2 ? progressPercent : 2}%`;
-
-        });
+        setTimeout(() => {
+            document.querySelector('.progress-bar').style.width =
+                `${progressPercent > 2 ? progressPercent : 2}%`;
+        }, 100);
     })
 
 document.querySelector('.js-cart-quantity-mobile').innerHTML = totalCartQuantityUpdate();
